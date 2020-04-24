@@ -1,26 +1,49 @@
+//Iteration 1: The logic
+
+//the class will have two properties: `currentTime`, `intervalId`.
 class Chronometer {
+  //create a Chronometer class
   constructor() {
-    // ... your code goes here
+    //Constructor method ! without arguments
+    this.currentTime = 0; // properties!
+    this.intervalId = 0; // properties!
   }
+
+  //Chronometer methods------------- =)
+
   startClick(callback) {
-    // ... your code goes here
+    // This method will receive the time
+    this.intervalId = setInterval(() => {
+      console.log(this.currentTime);
+      this.currentTime += 1;
+      if (callback) callback();
+    }, 1000);
   }
+
   getMinutes() {
-    // ... your code goes here
+    return Math.floor(this.currentTime / 60);
   }
+
   getSeconds() {
-    // ... your code goes here
+    return this.currentTime % 60; // % modulus  = The remainder left over when one operand is divided
   }
-  twoDigitsNumber() {
-    // ... your code goes here
+
+  twoDigitsNumber(value) {
+    if (value < 10) {
+      return `0${value}`;
+    } else {
+      return `${value}`;
+    }
   }
   stopClick() {
-    // ... your code goes here
+    clearInterval(this.intervalId);
   }
   resetClick() {
-    // ... your code goes here
+    this.currentTime = 0;
   }
   splitClick() {
-    // ... your code goes here
+    return `${this.twoDigitsNumber(this.getMinutes())}:${this.twoDigitsNumber(
+      this.getSeconds()
+    )}`;
   }
 }
